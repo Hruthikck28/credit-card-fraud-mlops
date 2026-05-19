@@ -8,6 +8,13 @@ jobs:
   test-api:
     runs-on: ubuntu-latest
     
+    # 1. Spin up an ephemeral Redis database in the cloud!
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+          
     steps:
     - uses: actions/checkout@v4
     
@@ -17,13 +24,13 @@ jobs:
         python-version: "3.12"
         
     - name: Install dependencies
+      # 2. Added the 'redis' python package here
       run: |
         python -m pip install --upgrade pip
-        pip install fastapi uvicorn pydantic pytest httpx mlflow scikit-learn python-dotenv feast pyarrow
+        pip install fastapi uvicorn pydantic pytest httpx mlflow scikit-learn python-dotenv feast pyarrow redis
         
     - name: Run API Tests
       env:
-        # This securely injects your GitHub Repository Secret into the cloud runner
         DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}  
       run: |
         python -m pytest tests/test_api.py
