@@ -1,0 +1,4 @@
+[core]
+    remote = origin
+['remote "origin"']
+    url = https://dagshub.com/Hruthikck28/credit-card-fraud-mlops.dvc
