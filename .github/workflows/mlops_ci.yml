@@ -27,7 +27,7 @@ jobs:
       # 2. Added the 'redis' python package here
       run: |
         python -m pip install --upgrade pip
-        pip install fastapi uvicorn pydantic pytest httpx mlflow scikit-learn python-dotenv feast pyarrow redis
+        pip install fastapi uvicorn pydantic pytest httpx mlflow scikit-learn==1.5.1 python-dotenv feast pyarrow redis
         
     - name: Run API Tests
       env:
