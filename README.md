@@ -61,7 +61,7 @@ Raw CSV (284K transactions)
        ▼
 ┌─────────────────────┐
 │  A/B Router          │  ← 80/20 traffic split, 2-proportion Z-test for
-│  + Evidently Drift   │     statistical significance + HTML drift report
+│  + Evidently Drift   │     statistical significance + HTML drift report+grafana report
 └─────────────────────┘
        │
        ▼
@@ -295,6 +295,8 @@ def get_variant(self, transaction_id: str) -> str:
 python src/monitoring/check_drift.py
 # → drift_report.html  (opens in browser, shows per-feature drift)
 ```
+Now added **grafana** report also to the project:
+<img width="1041" height="797" alt="Screenshot 2026-05-21 at 5 56 50 PM" src="https://github.com/user-attachments/assets/5dfd7053-c5e8-4cae-87d2-7feaba5595ed" />
 
 ---
 
@@ -378,7 +380,7 @@ Most "MLOps projects" on GitHub are just a Jupyter notebook with `mlflow.log_met
 | Model registry + staging | ❌ | ✅ MLflow Model Registry |
 | API loads from registry | ❌ | ✅ FastAPI pulls from DagsHub Staging |
 | A/B testing | ❌ | ✅ Hash router + Z-test significance |
-| Drift detection | ❌ | ✅ Evidently HTML report |
+| Drift detection | ❌ | ✅ Evidently HTML report and grafana report |
 | CI/CD with real services | ❌ | ✅ GitHub Actions + Redis service |
 | Docker infra | ❌ | ✅ 5-service Compose stack |
 
